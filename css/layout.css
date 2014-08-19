@@ -1,0 +1,29 @@
+/**
+* Control the layout of the Word Cloud
+*/
+
+#wordCloudWrapper
+{
+	margin:25px 50px 50px;
+}
+
+#topicsContainer
+{
+	width:500px;
+}
+
+#topicMetaData
+{
+	width:300px;
+}
+
+
+#topicsContainer,
+#topicMetaData
+{
+	height:400px;
+	border:1px solid #ddd;
+	display:inline-block;
+	overflow: hidden;
+	padding: 5px 10px;
+}

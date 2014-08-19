@@ -1,0 +1,43 @@
+/**
+* Setup element styles
+*/
+
+.loadingWords
+{
+	display:none;
+}
+
+#topicsContainer.loading .loadingWords
+{
+	display:block;
+}
+
+.topicTitle
+{
+	font-weight: bold;
+}
+
+.wordItem
+{
+	color:#bbb;
+	float: left;
+	padding: 8px 10px;
+}
+
+.wordItem:hover
+{
+	cursor:pointer;	
+	text-decoration:underline;
+}
+
+.highSentiment,
+.topicPositive
+{
+	color:#00CC00;
+}
+
+.lowSentiment,
+.topicNegative
+{
+	color:#FF0000;
+}

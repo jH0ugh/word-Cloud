@@ -4,15 +4,36 @@
 		<title>Word Cloud</title>
 		<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 		<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
-		<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js"></script>
+		<script src="http://d3js.org/d3.v2.min.js?2.10.0"></script>
+    	<script type="text/javascript" src="libs/d3.layout.cloud.js"></script>
 		<script type="text/javascript" src="js/wordCloud.js"></script>
+		<script type="text/javascript" src="js/wordCloudGetData.js"></script>
+		<script type="text/javascript" src="js/d3LayoutCloudHelper.js"></script>
+
+		<script type="application/json" src="data/topics.json"></script>
+
+		<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.min.css">
+		<link rel="stylesheet" href="css/layout.css">
+		<link rel="stylesheet" href="css/style.css">
+
+		<script type="text/template" id="metaItem">
+			Information on topic <span class="topicTitle">"<%= topic.label %>"</span><br/><br/>
+			Total Mentions: <%= topic.volume %><br/><br/>
+			Positive Mentions: <span class="topicPositive"><%= (topic.sentiment.positive) ? topic.sentiment.positive : '0' %></span><br/>
+			Neutral Mentions: <%= (topic.sentiment.neutral) ? topic.sentiment.neutral : '0' %><br/>
+			Negative Mentions:<span class="topicNegative"> <%= (topic.sentiment.negative) ? topic.sentiment.negative : '0' %></span>
+		</script>
+
 	</head>
 
-	<body>
-		<h1>My Topoics Challenge</h1>
-		<div id="cloud"></div>
-		<div id="wordDetails"></div>
+	<body onload="getWordCloudData()">
+		<div id="wordCloudWrapper">
+			<h1>My Topics Challenge</h1>
+			<div id="topicsContainer" class="loading">
+				<div class="loadingWords">Loading Words...</div>
+			</div>
+			<div id="topicMetaData"></div>
+		</div>
 	</body>
 
 </html>
