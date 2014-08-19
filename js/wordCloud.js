@@ -58,7 +58,7 @@ function WordCloud(){
 	};
 
 	function populateWordContainer(){
-		d3LayoutCloudHelper(layoutTopics);
+		d3LayoutCloudHelper(layoutTopics, getWordColour, getWordFontSize, showMetaData);
 	};
 
 	function showMetaData(topicId){

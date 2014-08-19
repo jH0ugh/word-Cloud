@@ -1,6 +1,6 @@
-function d3LayoutCloudHelper(Topic){
-	var topic = Topic;
-
+function d3LayoutCloudHelper(topic, getWordColour, getWordFontSize, showMetaData){
+	d3LayoutCloudHelperArray[topic[0].topic] = {showMetaData:showMetaData};
+	
 	var element = d3.select("#topicsContainer").append("svg")
     .attr("width", 500)
     .attr("height", 400)
@@ -11,7 +11,7 @@ function d3LayoutCloudHelper(Topic){
 	.words(topic)
 	.rotate(function() { return ~~(Math.random() * 2) * 5; })
 	.fontSize(function(d) { 
-		return wordCloud.getWordFontSize(d.size);
+		return getWordFontSize(d.size);
 	})
 	.on("end", draw)
 	.start();
@@ -28,8 +28,8 @@ function d3LayoutCloudHelper(Topic){
 		.style("font-size", function(d) { 
 			return d.size + "px"; 
 		})
-		.style("fill", function(d) { return wordCloud.getWordColour(d.rawData.size); })
-		.attr("onclick", function(d) { return "wordCloud.showMetaData('"+d.rawData.id+"')"; })
+		.style("fill", function(d) { return getWordColour(d.rawData.size); })
+		.attr("onclick", function(d) { return "d3LayoutCloudHelperArray["+topic[0].topic+"].showMetaData('"+d.rawData.id+"')"; })
 		.attr("class","wordItem")
 		.attr("text-anchor", "middle")
 		.attr("transform", function(d) {
@@ -39,4 +39,6 @@ function d3LayoutCloudHelper(Topic){
 
 	  }
 	
-}
+};
+
+var d3LayoutCloudHelperArray = [];
